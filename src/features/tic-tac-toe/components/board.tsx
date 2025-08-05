@@ -7,10 +7,13 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
   const winner = calculateWinner(squares);
+  const isBoardFull = squares.every(Boolean);
   const status = winner
     ? winner === "X"
-      ? "1st Player Wins! 🎉"
-      : "2nd Player Wins! 🎉"
+      ? "1st Player Wins!"
+      : "2nd Player Wins!"
+    : isBoardFull
+    ? "It's a Draw!"
     : isFirstPlayerTurn
     ? "1st Player turn:"
     : "2nd Player turn:";
