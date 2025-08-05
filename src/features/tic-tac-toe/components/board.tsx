@@ -6,6 +6,7 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
   const handleSquareClick = (index: number) => {
+    if (squares[index]) return;
     const newSquares = [...squares];
     if (isFirstPlayerTurn) {
       newSquares[index] = "X";
