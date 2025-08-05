@@ -1,4 +1,4 @@
 export interface SquareType {
-  value: string;
+  value: string | null;
   onClick: () => void;
 }

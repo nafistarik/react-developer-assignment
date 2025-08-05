@@ -4,7 +4,7 @@ import Square from "./square";
 import { calculateWinner } from "../utils/calculate-winner";
 
 export default function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState<(string | null)[]>(Array(9).fill(null));
   const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
   const winner = calculateWinner(squares);
   const isBoardFull = squares.every(Boolean);
