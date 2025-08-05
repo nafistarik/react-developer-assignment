@@ -13,13 +13,13 @@
   --popover: #ffffff;
   --popover-foreground: #171717;
 
-  --primary: #009d57;
+  --primary: #00cd70;
   --primary-foreground: #ffffff;
   --primary-hover: #00a75b;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
 
-  --border: #e5e7eb;
+  --border: #c8f3ce;
   --input: #f9fafb;
   --radius: 0.75rem;
 
@@ -48,7 +48,7 @@
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
 
-  --border: #2a2a2a;
+  --border: #1c8302;
   --input: #191919;
 }
 

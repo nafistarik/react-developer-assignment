@@ -4,10 +4,16 @@ import Square from "./square";
 
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
   const handleSquareClick = (index: number) => {
     const newSquares = [...squares];
-    newSquares[index] = "X";
+    if (isFirstPlayerTurn) {
+      newSquares[index] = "X";
+    } else {
+      newSquares[index] = "O";
+    }
     setSquares(newSquares);
+    setIsFirstPlayerTurn(!isFirstPlayerTurn);
   };
 
   return (
