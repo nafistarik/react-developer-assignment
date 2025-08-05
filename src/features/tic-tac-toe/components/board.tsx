@@ -18,16 +18,21 @@ export default function Board() {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-3 w-64 h-64">
-      {squares.map((value, index) => {
-        return (
-          <Square
-            key={index}
-            value={value}
-            onClick={() => handleSquareClick(index)}
-          />
-        );
-      })}
+    <div className="flex flex-col gap-4">
+      <h1 className="text-primary font-bold text-2xl">
+        {isFirstPlayerTurn ? "1st " : "2nd "}Player turn:
+      </h1>
+      <div className="grid grid-cols-3 gap-3 w-64 h-64">
+        {squares.map((value, index) => {
+          return (
+            <Square
+              key={index}
+              value={value}
+              onClick={() => handleSquareClick(index)}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
