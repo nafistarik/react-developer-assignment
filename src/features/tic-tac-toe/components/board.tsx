@@ -8,17 +8,20 @@ export default function Board() {
     Array(9).fill(null)
   );
   const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
+
   const winner = calculateWinner(squares);
   const isBoardFull = squares.every(Boolean);
+
   const status = winner
     ? winner === "X"
-      ? "1st Player Wins!"
-      : "2nd Player Wins!"
+      ? "1st Player Wins! 🎉"
+      : "2nd Player Wins! 🎉"
     : isBoardFull
-    ? "It's a Draw!"
+    ? "It's a Draw! 🤝"
     : isFirstPlayerTurn
-    ? "1st Player turn:"
-    : "2nd Player turn:";
+    ? "1st Player's turn (X)"
+    : "2nd Player's turn (O)";
+
   const handleSquareClick = (index: number) => {
     if (squares[index] || winner) return;
     const newSquares = [...squares];
@@ -28,8 +31,26 @@ export default function Board() {
   };
 
   return (
-    <div className="flex flex-col gap-4 px-4 py-6 border border-muted rounded-lg">
-      <h1 className="text-primary font-bold text-2xl">{status}</h1>
+    <div className="flex flex-col items-center gap-6 p-6 bg-popover border border-border rounded-xl">
+      <h1 className="text-2xl font-bold text-center">
+        <span className="text-muted-foreground">Tic Tac Toe</span>
+        <div
+          className={`mt-2 text-2xl ${winner && " animate-pulse"} ${
+            winner
+              ? winner === "X"
+                ? "text-primary"
+                : "text-destructive"
+              : isBoardFull
+              ? "text-muted-foreground"
+              : isFirstPlayerTurn
+              ? "text-primary"
+              : "text-destructive"
+          }`}
+        >
+          {status}
+        </div>
+      </h1>
+
       <div className="grid grid-cols-3 gap-3 w-64 h-64">
         {squares.map((value, index) => (
           <Square
@@ -39,9 +60,16 @@ export default function Board() {
           />
         ))}
       </div>
-      {winner || isBoardFull ? (
+
+      {(winner || isBoardFull) && (
         <button
-          className="mt-4 px-4 py-2 bg-primary text-white rounded-radius hover:bg-primary-hover hover:cursor-pointer transition-base"
+          className="
+            px-6 py-3 bg-primary text-primary-foreground 
+            rounded-radius font-bold hover:bg-primary-hover hover:cursor-pointer
+            transition-base shadow-md hover:shadow-lg
+            focus-visible:outline-none focus-visible:ring-2
+            focus-visible:ring-primary focus-visible:ring-offset-2
+          "
           onClick={() => {
             setSquares(Array(9).fill(null));
             setIsFirstPlayerTurn(true);
@@ -49,7 +77,7 @@ export default function Board() {
         >
           Play Again
         </button>
-      ) : null}
+      )}
     </div>
   );
 }

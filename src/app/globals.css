@@ -75,13 +75,15 @@
 }
 
 .container {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--container-padding-default);
   padding-right: var(--container-padding-default);
+  max-width: 100%;
 }
 
-/* xs breakpoint (min-width: 475px or similar) */
+/* Responsive container padding */
 @media (min-width: 475px) {
   .container {
     padding-left: var(--container-padding-xs);
@@ -89,27 +91,39 @@
   }
 }
 
-/* sm breakpoint */
 @media (min-width: 640px) {
   .container {
     padding-left: var(--container-padding-sm);
     padding-right: var(--container-padding-sm);
+    max-width: 640px;
   }
 }
 
-/* lg breakpoint */
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
 @media (min-width: 1024px) {
   .container {
     padding-left: var(--container-padding-lg);
     padding-right: var(--container-padding-lg);
+    max-width: 1024px;
   }
 }
 
-/* xl breakpoint */
 @media (min-width: 1280px) {
   .container {
     padding-left: var(--container-padding-xl);
     padding-right: var(--container-padding-xl);
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
   }
 }
 
