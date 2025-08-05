@@ -6,9 +6,9 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  --card: #eefff5;
+  --card: #dbffea;
   --card-foreground: #171717;
-  --muted: #f0fdf4;
+  --muted: #e3e3e3;
   --muted-foreground: #4b5563;
   --popover: #ffffff;
   --popover-foreground: #171717;
@@ -22,6 +22,12 @@
   --border: #e5e7eb;
   --input: #f9fafb;
   --radius: 0.75rem;
+
+  --container-padding-default: 1rem;
+  --container-padding-xs: 1rem;
+  --container-padding-sm: 2rem;
+  --container-padding-lg: 4rem;
+  --container-padding-xl: 6rem;
 }
 
 /* Dark Mode Variables */
@@ -61,6 +67,50 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
+  --radius-radius: var(--radius);
+}
+
+.transition-base {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-default);
+  padding-right: var(--container-padding-default);
+}
+
+/* xs breakpoint (min-width: 475px or similar) */
+@media (min-width: 475px) {
+  .container {
+    padding-left: var(--container-padding-xs);
+    padding-right: var(--container-padding-xs);
+  }
+}
+
+/* sm breakpoint */
+@media (min-width: 640px) {
+  .container {
+    padding-left: var(--container-padding-sm);
+    padding-right: var(--container-padding-sm);
+  }
+}
+
+/* lg breakpoint */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--container-padding-lg);
+    padding-right: var(--container-padding-lg);
+  }
+}
+
+/* xl breakpoint */
+@media (min-width: 1280px) {
+  .container {
+    padding-left: var(--container-padding-xl);
+    padding-right: var(--container-padding-xl);
+  }
 }
 
 body {
