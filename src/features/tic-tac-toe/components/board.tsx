@@ -15,7 +15,7 @@ export default function Board() {
     ? "1st Player turn:"
     : "2nd Player turn:";
   const handleSquareClick = (index: number) => {
-    if (squares[index]) return;
+    if (squares[index] || winner) return;
     const newSquares = [...squares];
     newSquares[index] = isFirstPlayerTurn ? "X" : "O";
     setSquares(newSquares);
