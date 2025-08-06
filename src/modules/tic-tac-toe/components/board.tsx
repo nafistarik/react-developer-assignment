@@ -3,7 +3,7 @@
 import Square from "./square";
 import { calculateWinner } from "../utils/calculate-winner";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { makeMove, resetBoard } from "@/redux/features/BoardSlice";
+import { makeMove, resetBoard } from "@/redux/features/boardSlice";
 
 export default function Board() {
   const dispatch = useAppDispatch();

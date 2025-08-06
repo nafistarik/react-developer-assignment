@@ -1,9 +1,5 @@
-import Board from "@/modules/tic-tac-toe/components/board";
+import React from "react";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <Board />
-    </main>
-  );
+export default function PlayerSetup() {
+  return <div>Player Setup</div>;
 }
