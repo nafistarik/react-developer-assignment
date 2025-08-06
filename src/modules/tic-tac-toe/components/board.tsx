@@ -12,18 +12,21 @@ export default function Board() {
     (state) => state.board.isFirstPlayerTurn
   );
 
+  const player1 = useAppSelector((state) => state.player.player1);
+  const player2 = useAppSelector((state) => state.player.player2);
+
   const winner = calculateWinner(squares);
   const isBoardFull = squares.every(Boolean);
 
   const status = winner
     ? winner === "X"
-      ? "1st Player Wins! 🎉"
-      : "2nd Player Wins! 🎉"
+      ? `${player1} Wins! 🎉`
+      : `${player2} Wins! 🎉`
     : isBoardFull
     ? "It's a Draw! 🤝"
     : isFirstPlayerTurn
-    ? "1st Player's turn (X)"
-    : "2nd Player's turn (O)";
+    ? `${player1}'s turn (X)`
+    : `${player2}'s turn (O)`;
 
   return (
     <div className="flex flex-col items-center gap-6 p-6 border border-border rounded-xl">
