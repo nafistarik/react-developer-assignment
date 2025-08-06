@@ -7,6 +7,7 @@ export default function Board() {
   const [squares, setSquares] = useState<(string | null)[]>(
     Array(9).fill(null)
   );
+
   const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
 
   const winner = calculateWinner(squares);
@@ -64,10 +65,9 @@ export default function Board() {
       {(winner || isBoardFull) && (
         <button
           className="
-            px-6 py-3 bg-primary text-primary-foreground 
-            rounded-radius font-bold hover:bg-primary-hover hover:cursor-pointer
-            transition-base shadow-md hover:shadow-lg
-            focus-visible:outline-none focus-visible:ring-2
+            px-6 py-2 bg-primary text-primary-foreground 
+            rounded-lg font-bold hover:bg-primary-hover hover:cursor-pointer
+            transition-base shadow-md focus-visible:outline-none focus-visible:ring-2
             focus-visible:ring-primary focus-visible:ring-offset-2
           "
           onClick={() => {

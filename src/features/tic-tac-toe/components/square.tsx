@@ -6,16 +6,16 @@ export default function Square({ value, onClick }: SquareType) {
       className="
         aspect-square flex items-center justify-center 
         text-4xl font-bold rounded-radius text-primary
-        bg-card hover:bg-muted
+        bg-card hover:border-primary
         border-2 border-border
         transition-base
         focus-visible:outline-none focus-visible:ring-2 
         focus-visible:ring-primary focus-visible:ring-offset-2
         ${value === 'X' ? 'text-primary' : 'text-destructive'}
-        hover:scale-[1.02] active:scale-95 hover:cursor-pointer
+        active:scale-95 hover:cursor-pointer
       "
       onClick={onClick}
-      aria-label={value ? `${value} square` : 'Empty square'}
+      aria-label={value ? `${value} square` : "Empty square"}
     >
       {value}
     </button>
