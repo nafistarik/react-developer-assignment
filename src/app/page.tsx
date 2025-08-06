@@ -1,5 +1,5 @@
-import React from "react";
+import PlayerSetupForm from "@/modules/tic-tac-toe/components/player-setup-form";
 
 export default function PlayerSetup() {
-  return <div>Player Setup</div>;
+  return <PlayerSetupForm />
 }
