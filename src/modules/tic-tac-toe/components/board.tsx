@@ -4,8 +4,11 @@ import Square from "./square";
 import { calculateWinner } from "../utils/calculate-winner";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { makeMove, resetBoard } from "@/redux/features/boardSlice";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Board() {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const squares = useAppSelector((state) => state.board.squares);
   const isFirstPlayerTurn = useAppSelector(
@@ -14,6 +17,12 @@ export default function Board() {
 
   const player1 = useAppSelector((state) => state.player.player1);
   const player2 = useAppSelector((state) => state.player.player2);
+
+  useEffect(() => {
+    if (!player1 || !player2) {
+      router.push("/");
+    }
+  }, [player1, player2, router]);
 
   const winner = calculateWinner(squares);
   const isBoardFull = squares.every(Boolean);
@@ -33,7 +42,7 @@ export default function Board() {
       <h1 className="text-2xl font-bold text-center">
         <span className="text-muted-foreground">🎮 Tic Tac Toe</span>
         <div
-          className={`mt-2 text-2xl ${winner && " animate-pulse"} ${
+          className={`mt-2 text-xl ${winner && " animate-pulse"} ${
             winner
               ? winner === "X"
                 ? "text-primary"
@@ -49,7 +58,7 @@ export default function Board() {
         </div>
       </h1>
 
-      <div className="grid grid-cols-3 gap-3 w-64 h-64">
+      <div className="grid grid-cols-3 gap-3 w-72 h-72">
         {squares.map((value, index) => (
           <Square
             key={index}
