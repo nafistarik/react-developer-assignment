@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ReduxProvider } from "@/redux/provider";
 
 export const metadata: Metadata = {
-  title: "Tic Tac Toe | React Developer Assignment",
-  description: "A beautiful Tic Tac Toe game created by Md. Nafis Tarik",
+  title: "React Developer Assignment",
+  description: "Assignment completed by Md. Nafis Tarik",
 };
 
 export default function RootLayout({
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`antialiased min-h-full transition-base`}>
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

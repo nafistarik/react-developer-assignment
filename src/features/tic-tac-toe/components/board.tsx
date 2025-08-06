@@ -34,7 +34,7 @@ export default function Board() {
   return (
     <div className="flex flex-col items-center gap-6 p-6 bg-popover border border-border rounded-xl">
       <h1 className="text-2xl font-bold text-center">
-        <span className="text-muted-foreground">Tic Tac Toe</span>
+        <span className="text-muted-foreground">🎮 Tic Tac Toe</span>
         <div
           className={`mt-2 text-2xl ${winner && " animate-pulse"} ${
             winner
