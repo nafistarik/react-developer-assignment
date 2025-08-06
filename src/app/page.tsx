@@ -1,4 +1,4 @@
-import Board from "@/features/tic-tac-toe/components/board";
+import Board from "@/modules/tic-tac-toe/components/board";
 
 export default function Home() {
   return (

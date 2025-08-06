@@ -14,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`antialiased min-h-full transition-base`}>
+      <body
+        className={`antialiased min-h-full transition-base`}
+        suppressHydrationWarning={true}
+      >
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>

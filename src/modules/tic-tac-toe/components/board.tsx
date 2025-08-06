@@ -1,14 +1,16 @@
 "use client";
-import { useState } from "react";
+
 import Square from "./square";
 import { calculateWinner } from "../utils/calculate-winner";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { makeMove, resetBoard } from "@/redux/features/BoardSlice";
 
 export default function Board() {
-  const [squares, setSquares] = useState<(string | null)[]>(
-    Array(9).fill(null)
+  const dispatch = useAppDispatch();
+  const squares = useAppSelector((state) => state.board.squares);
+  const isFirstPlayerTurn = useAppSelector(
+    (state) => state.board.isFirstPlayerTurn
   );
-
-  const [isFirstPlayerTurn, setIsFirstPlayerTurn] = useState(true);
 
   const winner = calculateWinner(squares);
   const isBoardFull = squares.every(Boolean);
@@ -22,14 +24,6 @@ export default function Board() {
     : isFirstPlayerTurn
     ? "1st Player's turn (X)"
     : "2nd Player's turn (O)";
-
-  const handleSquareClick = (index: number) => {
-    if (squares[index] || winner) return;
-    const newSquares = [...squares];
-    newSquares[index] = isFirstPlayerTurn ? "X" : "O";
-    setSquares(newSquares);
-    setIsFirstPlayerTurn(!isFirstPlayerTurn);
-  };
 
   return (
     <div className="flex flex-col items-center gap-6 p-6 bg-popover border border-border rounded-xl">
@@ -57,7 +51,11 @@ export default function Board() {
           <Square
             key={index}
             value={value}
-            onClick={() => handleSquareClick(index)}
+            onClick={() => {
+              if (!value && !winner) {
+                dispatch(makeMove(index));
+              }
+            }}
           />
         ))}
       </div>
@@ -71,8 +69,7 @@ export default function Board() {
             focus-visible:ring-primary focus-visible:ring-offset-2
           "
           onClick={() => {
-            setSquares(Array(9).fill(null));
-            setIsFirstPlayerTurn(true);
+            dispatch(resetBoard());
           }}
         >
           Play Again
