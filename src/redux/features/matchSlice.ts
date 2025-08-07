@@ -51,8 +51,17 @@ const matchSlice = createSlice({
         state.round += 1; //next round
       }
     },
+
+    resetMatch(state) {
+      state.round = 1;
+      state.player1Wins = 0;
+      state.player2Wins = 0;
+      state.draws = 0;
+      state.matchOver = false;
+      state.finalWinner = null;
+    },
   },
 });
 
-export const { updateMatchResult } = matchSlice.actions;
+export const { updateMatchResult, resetMatch } = matchSlice.actions;
 export default matchSlice.reducer;
