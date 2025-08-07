@@ -1,7 +1,9 @@
 "use client";
 
-import { useAppSelector } from "@/redux/hooks";
-import Link from "next/link";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { resetMatch } from "@/redux/features/matchSlice";
+import { resetBoard } from "@/redux/features/boardSlice";
+import { useRouter } from "next/navigation";
 
 interface PlayerStats {
   name: string;
@@ -13,6 +15,8 @@ interface PlayerStats {
 }
 
 export default function Leaderboard() {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   const leaderboard = useAppSelector((state) => state.leaderboard);
   const players = useAppSelector((state) => state.player);
 
@@ -35,17 +39,25 @@ export default function Leaderboard() {
       return a.name.localeCompare(b.name);
     });
 
+  const handleBackToGame = () => {
+    // Reset game state
+    dispatch(resetBoard());
+    dispatch(resetMatch());
+    // Navigate to player setup page
+    router.push("/");
+  };
+
   return (
     <div className="min-h-screen p-4 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold">Leaderboard</h1>
-          <Link 
-            href="/" 
-            className="text-primary hover:underline"
+          <button
+            onClick={handleBackToGame}
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
           >
-            Back to Game
-          </Link>
+            New Game
+          </button>
         </div>
         
         {sortedPlayers.length === 0 ? (
