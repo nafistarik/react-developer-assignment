@@ -30,7 +30,7 @@ const leaderboardSlice = createSlice({
         finalWinner: "player1" | "player2" | "draw" | null;
       }>
     ) {
-      const { player1, player2, player1Wins, player2Wins, draws, finalWinner } = action.payload;
+      const { player1, player2, player1Wins, player2Wins, draws } = action.payload;
       const now = new Date().toISOString();
 
       // Initialize players if they don't exist
