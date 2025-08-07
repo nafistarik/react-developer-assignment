@@ -74,6 +74,7 @@ export default function Leaderboard() {
                   <th className="px-4 py-3 text-center">Wins</th>
                   <th className="px-4 py-3 text-center">Losses</th>
                   <th className="px-4 py-3 text-center">Draws</th>
+                  <th className="px-4 py-3 text-center">Points</th>
                   <th className="px-4 py-3 text-center">Win Rate</th>
                   <th className="px-4 py-3 text-right">Last Played</th>
                 </tr>
@@ -87,9 +88,10 @@ export default function Leaderboard() {
                        player.name === players.player2 ? `${player.name} (O)` : 
                        player.name}
                     </td>
+                    <td className="px-4 py-3 text-center text-primary">{player.wins/2}</td>
+                    <td className="px-4 py-3 text-center text-destructive">{player.losses/2}</td>
+                    <td className="px-4 py-3 text-center">{player.draws/2}</td>
                     <td className="px-4 py-3 text-center text-primary">{player.wins}</td>
-                    <td className="px-4 py-3 text-center text-destructive">{player.losses}</td>
-                    <td className="px-4 py-3 text-center">{player.draws}</td>
                     <td className="px-4 py-3 text-center">{player.winRate}%</td>
                     <td className="px-4 py-3 text-right text-sm text-muted-foreground">
                       {new Date(player.lastPlayed).toLocaleDateString()}
