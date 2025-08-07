@@ -3,13 +3,30 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { resetMatch } from "@/redux/features/matchSlice";
 import { resetBoard } from "@/redux/features/boardSlice";
+import { addMatchResult } from "@/redux/features/leaderboardSlice";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function ResultPage() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const match = useAppSelector((state) => state.match);
   const players = useAppSelector((state) => state.player);
+
+  // Update leaderboard when the component mounts
+  useEffect(() => {
+    if (match.matchOver) {
+      dispatch(addMatchResult({
+        player1: players.player1,
+        player2: players.player2,
+        player1Wins: match.player1Wins,
+        player2Wins: match.player2Wins,
+        draws: match.draws,
+        finalWinner: match.finalWinner
+      }));
+    }
+  }, [dispatch, match, players]);
 
   const handleRestart = () => {
     dispatch(resetBoard());
@@ -27,8 +44,9 @@ export default function ResultPage() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-card p-8 rounded-xl shadow-lg max-w-md w-full">
         <h1 className="text-3xl font-bold text-center mb-6">
-          {match.finalWinner === "draw" ? "🤝 Match Drawn!" : 
-           `🎉 ${players[match.finalWinner || "player1"]} Wins!`}
+          {match.finalWinner === "draw"
+            ? "🤝 Match Drawn!"
+            : `🎉 ${players[match.finalWinner || "player1"]} Wins!`}
         </h1>
 
         <div className="mb-8">
@@ -51,8 +69,10 @@ export default function ResultPage() {
             <p>Total rounds played: {match.round}</p>
             {match.history.map((round, index) => (
               <p key={index}>
-                Round {round.round}: {round.winner === "draw" ? "Draw" : 
-                `${players[round.winner]} won`}
+                Round {round.round}:{" "}
+                {round.winner === "draw"
+                  ? "Draw"
+                  : `${players[round.winner]} won`}
               </p>
             ))}
           </div>
@@ -71,6 +91,12 @@ export default function ResultPage() {
           >
             New Match
           </button>
+          <Link
+            href="/leaderboard"
+            className="px-6 py-2 text-center text-primary border border-primary rounded-lg hover:bg-primary/10"
+          >
+            View Leaderboard
+          </Link>
         </div>
       </div>
     </div>
