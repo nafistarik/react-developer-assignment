@@ -1,7 +1,9 @@
+"use client";
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
 import { calculateWinner } from "../utils/calculate-winner";
 import { resetBoard } from "@/redux/features/boardSlice";
+import { useRouter } from "next/navigation";
 
 export default function ResultPage() {
   const squares = useAppSelector((state) => state.board.squares);
