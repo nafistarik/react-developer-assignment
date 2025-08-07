@@ -7,6 +7,11 @@ interface MatchState {
   draws: number;
   matchOver: boolean;
   finalWinner: "player1" | "player2" | "draw" | null;
+  history: Array<{
+    round: number;
+    winner: "player1" | "player2" | "draw";
+    squares: (string | null)[];
+  }>;
 }
 
 const initialState: MatchState = {
@@ -16,52 +21,58 @@ const initialState: MatchState = {
   draws: 0,
   matchOver: false,
   finalWinner: null,
+  history: [],
 };
 
 const matchSlice = createSlice({
   name: "match",
   initialState,
   reducers: {
-    updateMatchResult(
+    recordRoundResult(
       state,
-      action: PayloadAction<"player1" | "player2" | "draw">
+      action: PayloadAction<{
+        winner: "player1" | "player2" | "draw";
+        squares: (string | null)[];
+      }>
     ) {
-      if (state.matchOver) return;
-      if (action.payload === "player1") {
-        state.player1Wins += 1; //if player 1 wins
-      } else if (action.payload === "player2") {
-        state.player2Wins += 1; //if player2 wins
+      // Record the round result
+      state.history.push({
+        round: state.round,
+        winner: action.payload.winner,
+        squares: [...action.payload.squares],
+      });
+
+      // Update scores
+      if (action.payload.winner === "player1") {
+        state.player1Wins += 1;
+      } else if (action.payload.winner === "player2") {
+        state.player2Wins += 1;
       } else {
-        state.draws += 1; //if draw
+        state.draws += 1;
       }
-      const totalRoundsPlayed =
-        state.player1Wins + state.player2Wins + state.draws;
-      if (
-        state.player1Wins === 3 || //already player 1 win 3
-        state.player2Wins === 3 || //already player2 win 3
-        totalRoundsPlayed === 5 // 5 round ended
-      ) {
+
+      // Check match conditions
+      const hasWinner = state.player1Wins >= 3 || state.player2Wins >= 3;
+      const maxRoundsReached = state.round >= 5;
+
+      if (hasWinner || maxRoundsReached) {
         state.matchOver = true;
-        if (state.player1Wins > state.player2Wins)
-          state.finalWinner = "player1"; //player 1 more win
-        else if (state.player2Wins > state.player1Wins)
-          state.finalWinner = "player2"; //player 2 more win
-        else state.finalWinner = "draw"; //both same
+        if (state.player1Wins > state.player2Wins) {
+          state.finalWinner = "player1";
+        } else if (state.player2Wins > state.player1Wins) {
+          state.finalWinner = "player2";
+        } else {
+          state.finalWinner = "draw";
+        }
       } else {
-        state.round += 1; //next round
+        state.round += 1;
       }
     },
-
     resetMatch(state) {
-      state.round = 1;
-      state.player1Wins = 0;
-      state.player2Wins = 0;
-      state.draws = 0;
-      state.matchOver = false;
-      state.finalWinner = null;
+      return initialState;
     },
   },
 });
 
-export const { updateMatchResult, resetMatch } = matchSlice.actions;
+export const { recordRoundResult, resetMatch } = matchSlice.actions;
 export default matchSlice.reducer;
