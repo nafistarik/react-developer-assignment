@@ -68,7 +68,7 @@ const matchSlice = createSlice({
         state.round += 1;
       }
     },
-    resetMatch(state) {
+    resetMatch() {
       return initialState;
     },
   },
