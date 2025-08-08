@@ -1,7 +1,10 @@
+// next.config.ts
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ["i.imgur.com","placehold.co"], // allow images from i.imgur.com
+  },
 };
 
 export default nextConfig;
