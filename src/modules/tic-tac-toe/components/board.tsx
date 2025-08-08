@@ -61,7 +61,7 @@ export default function Board() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 p-6 border border-border rounded-xl">
+    <div className="flex flex-col items-center gap-6 p-6 border border-border rounded-xl bg-card shadow-lg min-h-[calc(100vh-140px)]">
       <h1 className="text-2xl font-bold">Tic Tac Toe</h1>
       
       <div className="text-center">
@@ -82,7 +82,7 @@ export default function Board() {
         {getStatusMessage()}
       </div>
 
-      <div className="grid grid-cols-3 gap-3 w-72 h-72">
+      <div className="grid grid-cols-3 gap-3 w-64 h-64">
         {squares.map((value, index) => (
           <Square
             key={index}

@@ -48,10 +48,12 @@ export default function Leaderboard() {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-background">
+    <div className="p-4 bg-background flex items-center justify-center min-h-[calc(100vh-140px)]">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">Leaderboard</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+            Leaderboard
+          </h1>
           <button
             onClick={handleBackToGame}
             className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"

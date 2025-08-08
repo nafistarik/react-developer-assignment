@@ -19,7 +19,7 @@ export default function PlayerSetupForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="flex items-center justify-center p-4  min-h-[calc(100vh-140px)]">
       <div className="bg-card p-8 rounded-xl shadow-lg max-w-md w-full">
         <h1 className="text-2xl font-bold mb-6 text-center">Player Setup</h1>
         

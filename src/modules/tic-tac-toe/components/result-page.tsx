@@ -17,14 +17,16 @@ export default function ResultPage() {
   // Update leaderboard when the component mounts
   useEffect(() => {
     if (match.matchOver) {
-      dispatch(addMatchResult({
-        player1: players.player1,
-        player2: players.player2,
-        player1Wins: match.player1Wins,
-        player2Wins: match.player2Wins,
-        draws: match.draws,
-        finalWinner: match.finalWinner
-      }));
+      dispatch(
+        addMatchResult({
+          player1: players.player1,
+          player2: players.player2,
+          player1Wins: match.player1Wins,
+          player2Wins: match.player2Wins,
+          draws: match.draws,
+          finalWinner: match.finalWinner,
+        })
+      );
     }
   }, [dispatch, match, players]);
 
@@ -41,7 +43,7 @@ export default function ResultPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center  min-h-[calc(100vh-140px)]">
       <div className="bg-card p-8 rounded-xl shadow-lg max-w-md w-full">
         <h1 className="text-3xl font-bold text-center mb-6">
           {match.finalWinner === "draw"
@@ -78,22 +80,25 @@ export default function ResultPage() {
           </div>
         </div>
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 w-full pb-4">
           <button
             onClick={handleRestart}
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 flex-1"
           >
             Play Again
           </button>
           <button
             onClick={handleNewMatch}
-            className="px-6 py-2 bg-foreground text-background rounded-lg hover:opacity-90"
+            className="px-6 py-2 bg-foreground text-background rounded-lg hover:opacity-90 flex-1"
           >
             New Match
           </button>
+        </div>
+
+        <div className="w-full">
           <Link
             href="/leaderboard"
-            className="px-6 py-2 text-center text-primary border border-primary rounded-lg hover:bg-primary/10"
+            className="px-6 py-2 text-center text-primary bg-transparent border border-primary rounded-lg hover:bg-primary/10 w-[100%]"
           >
             View Leaderboard
           </Link>

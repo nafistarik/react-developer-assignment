@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ReduxProvider } from "@/redux/provider";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "React Developer Assignment",
@@ -18,7 +20,13 @@ export default function RootLayout({
         className={`antialiased min-h-full transition-base`}
         suppressHydrationWarning={true}
       >
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
+        </ReduxProvider>
       </body>
     </html>
   );
