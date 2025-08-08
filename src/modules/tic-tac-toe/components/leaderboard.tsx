@@ -25,11 +25,11 @@ export default function Leaderboard() {
     .map(([name, stats]) => {
       const totalGames = stats.wins + stats.losses + stats.draws;
       const winRate = totalGames > 0 ? (stats.wins / totalGames) * 100 : 0;
-      
+
       return {
         name,
         ...stats,
-        winRate: parseFloat(winRate.toFixed(1)) // Round to 1 decimal place
+        winRate: parseFloat(winRate.toFixed(1)), // Round to 1 decimal place
       };
     })
     .sort((a, b) => {
@@ -59,7 +59,7 @@ export default function Leaderboard() {
             New Game
           </button>
         </div>
-        
+
         {sortedPlayers.length === 0 ? (
           <div className="bg-card rounded-lg p-8 text-center text-muted-foreground">
             No matches recorded yet. Play a match to see stats!
@@ -84,14 +84,22 @@ export default function Leaderboard() {
                   <tr key={player.name} className="hover:bg-muted/50">
                     <td className="px-4 py-3">{index + 1}</td>
                     <td className="px-4 py-3 font-medium">
-                      {player.name === players.player1 ? `${player.name} (X)` : 
-                       player.name === players.player2 ? `${player.name} (O)` : 
-                       player.name}
+                      {player.name === players.player1
+                        ? `${player.name} (X)`
+                        : player.name === players.player2
+                        ? `${player.name} (O)`
+                        : player.name}
                     </td>
-                    <td className="px-4 py-3 text-center text-primary">{player.wins/2}</td>
-                    <td className="px-4 py-3 text-center text-destructive">{player.losses/2}</td>
-                    <td className="px-4 py-3 text-center">{player.draws/2}</td>
-                    <td className="px-4 py-3 text-center text-primary">{player.wins}</td>
+                    <td className="px-4 py-3 text-center text-primary">
+                      {player.wins}
+                    </td>
+                    <td className="px-4 py-3 text-center text-destructive">
+                      {player.losses}
+                    </td>
+                    <td className="px-4 py-3 text-center">{player.draws}</td>
+                    <td className="px-4 py-3 text-center text-primary">
+                      {player.wins * 2 + player.draws}
+                    </td>
                     <td className="px-4 py-3 text-center">{player.winRate}%</td>
                     <td className="px-4 py-3 text-right text-sm text-muted-foreground">
                       {new Date(player.lastPlayed).toLocaleDateString()}
