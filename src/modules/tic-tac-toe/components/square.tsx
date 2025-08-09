@@ -5,14 +5,14 @@ export default function Square({ value, onClick }: SquareType) {
     <button
       className={`
         aspect-square flex items-center justify-center 
-        text-4xl font-bold rounded-lg 
-        bg-white hover:bg-gray-50
-        border-2 border-gray-200
-        transition-all duration-200
-        focus-visible:outline-none focus-visible:ring-2 
-        focus-visible:ring-indigo-500 focus-visible:ring-offset-2
-        ${value === "X" ? "text-primary" : "text-rose-600"}
-        active:scale-95
+        text-5xl font-extrabold rounded-xl 
+        bg-[var(--background)] hover:bg-[var(--muted)] 
+        border-4 border-[var(--border)] 
+        transition-transform duration-150
+        focus-visible:outline-none focus-visible:ring-4 
+        focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2
+        ${value === "X" ? "text-[var(--primary)]" : "text-[var(--destructive)]"}
+        active:scale-90
       `}
       onClick={onClick}
       aria-label={value ? `${value} square` : "Empty square"}

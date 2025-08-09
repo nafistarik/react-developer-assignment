@@ -43,31 +43,37 @@ export default function ResultPage() {
   };
 
   return (
-    <div className="flex items-center justify-center  min-h-[calc(100vh-140px)]">
-      <div className="bg-card p-8 rounded-xl shadow-lg max-w-md w-full">
-        <h1 className="text-3xl font-bold text-center mb-6">
+    <div className="flex items-center justify-center px-4 py-8 min-h-[calc(100vh-140px)] bg-[var(--background)]">
+      <div className="bg-[var(--card)] p-8 rounded-3xl shadow-xl max-w-md w-full border border-[var(--border)]">
+        <h1 className="text-4xl font-extrabold text-center mb-8 select-none">
           {match.finalWinner === "draw"
             ? "🤝 Match Drawn!"
             : `🎉 ${players[match.finalWinner || "player1"]} Wins!`}
         </h1>
 
-        <div className="mb-8">
-          <div className="grid grid-cols-3 gap-4 mb-4">
-            <div className="bg-primary/10 p-3 rounded-lg text-center">
-              <h3 className="font-bold">{players.player1}</h3>
-              <p className="text-primary text-xl">{match.player1Wins}</p>
+        <div className="mb-10">
+          <div className="grid grid-cols-3 gap-6 mb-6">
+            <div className="bg-[var(--primary)]/20 p-4 rounded-xl text-center">
+              <h3 className="font-bold text-[var(--primary)]">
+                {players.player1}
+              </h3>
+              <p className="text-3xl font-semibold">{match.player1Wins}</p>
             </div>
-            <div className="bg-muted p-3 rounded-lg text-center">
-              <h3 className="font-bold">Draws</h3>
-              <p className="text-xl">{match.draws}</p>
+            <div className="bg-[var(--muted)] p-4 rounded-xl text-center">
+              <h3 className="font-bold text-[var(--muted-foreground)]">
+                Draws
+              </h3>
+              <p className="text-3xl font-semibold">{match.draws}</p>
             </div>
-            <div className="bg-destructive/10 p-3 rounded-lg text-center">
-              <h3 className="font-bold">{players.player2}</h3>
-              <p className="text-destructive text-xl">{match.player2Wins}</p>
+            <div className="bg-[var(--destructive)]/20 p-4 rounded-xl text-center">
+              <h3 className="font-bold text-[var(--destructive)]">
+                {players.player2}
+              </h3>
+              <p className="text-3xl font-semibold">{match.player2Wins}</p>
             </div>
           </div>
 
-          <div className="space-y-2 text-sm text-muted-foreground">
+          <div className="space-y-2 text-sm text-[var(--muted-foreground)] select-none">
             <p>Total rounds played: {match.round}</p>
             {match.history.map((round, index) => (
               <p key={index}>
@@ -80,25 +86,25 @@ export default function ResultPage() {
           </div>
         </div>
 
-        <div className="flex gap-4 w-full pb-4">
+        <div className="flex gap-4 w-full">
           <button
             onClick={handleRestart}
-            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 flex-1"
+            className="px-6 py-3 bg-[var(--primary)] text-white rounded-xl font-semibold tracking-wide hover:bg-[var(--primary-hover)] transition-colors flex-1 select-none"
           >
             Play Again
           </button>
           <button
             onClick={handleNewMatch}
-            className="px-6 py-2 bg-foreground text-background rounded-lg hover:opacity-90 flex-1"
+            className="px-6 py-3 bg-[var(--foreground)] text-[var(--background)] rounded-xl font-semibold hover:opacity-90 transition-opacity flex-1 select-none"
           >
             New Match
           </button>
         </div>
 
-        <div className="w-full">
+        <div className="mt-6 w-full">
           <Link
             href="/leaderboard"
-            className="px-6 py-2 text-center text-primary bg-transparent border border-primary rounded-lg hover:bg-primary/10 w-[100%]"
+            className="block px-6 py-3 text-center text-[var(--primary)] bg-transparent border border-[var(--primary)] rounded-xl hover:bg-[var(--primary)]/10 transition-colors select-none"
           >
             View Leaderboard
           </Link>

@@ -48,62 +48,81 @@ export default function Leaderboard() {
   };
 
   return (
-    <div className="p-4 bg-background flex items-center justify-center min-h-[calc(100vh-140px)]">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+    <div className="p-6 bg-[var(--background)] flex items-center justify-center min-h-[calc(100vh-140px)]">
+      <div className="max-w-5xl w-full">
+        <div className="flex justify-between items-center mb-10">
+          <h1 className="text-4xl font-extrabold text-[var(--foreground)] select-none">
             Leaderboard
           </h1>
           <button
             onClick={handleBackToGame}
-            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            className="px-5 py-2 bg-[var(--primary)] text-white rounded-xl font-semibold hover:bg-[var(--primary-hover)] transition-colors select-none"
           >
             New Game
           </button>
         </div>
 
         {sortedPlayers.length === 0 ? (
-          <div className="bg-card rounded-lg p-8 text-center text-muted-foreground">
+          <div className="bg-[var(--card)] rounded-xl p-12 text-center text-[var(--muted-foreground)] select-none shadow-lg">
             No matches recorded yet. Play a match to see stats!
           </div>
         ) : (
-          <div className="bg-card rounded-lg shadow overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-muted">
+          <div className="bg-[var(--card)] rounded-xl shadow-lg overflow-x-auto border border-[var(--border)]">
+            <table className="w-full table-fixed">
+              <thead className="bg-[var(--muted)]">
                 <tr>
-                  <th className="px-4 py-3 text-left">Rank</th>
-                  <th className="px-4 py-3 text-left">Player</th>
-                  <th className="px-4 py-3 text-center">Wins</th>
-                  <th className="px-4 py-3 text-center">Losses</th>
-                  <th className="px-4 py-3 text-center">Draws</th>
-                  <th className="px-4 py-3 text-center">Points</th>
-                  <th className="px-4 py-3 text-center">Win Rate</th>
-                  <th className="px-4 py-3 text-right">Last Played</th>
+                  <th className="px-6 py-4 text-left font-semibold select-none">
+                    Rank
+                  </th>
+                  <th className="px-6 py-4 text-left font-semibold select-none">
+                    Player
+                  </th>
+                  <th className="px-6 py-4 text-center font-semibold select-none">
+                    Wins
+                  </th>
+                  <th className="px-6 py-4 text-center font-semibold select-none">
+                    Losses
+                  </th>
+                  <th className="px-6 py-4 text-center font-semibold select-none">
+                    Draws
+                  </th>
+                  <th className="px-6 py-4 text-center font-semibold select-none">
+                    Points
+                  </th>
+                  <th className="px-6 py-4 text-center font-semibold select-none">
+                    Win Rate
+                  </th>
+                  <th className="px-6 py-4 text-right font-semibold select-none">
+                    Last Played
+                  </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border">
+              <tbody className="divide-y divide-[var(--border)]">
                 {sortedPlayers.map((player, index) => (
-                  <tr key={player.name} className="hover:bg-muted/50">
-                    <td className="px-4 py-3">{index + 1}</td>
-                    <td className="px-4 py-3 font-medium">
+                  <tr
+                    key={player.name}
+                    className="hover:bg-[var(--muted)]/50 transition-colors cursor-default select-text"
+                  >
+                    <td className="px-6 py-4">{index + 1}</td>
+                    <td className="px-6 py-4 font-semibold">
                       {player.name === players.player1
                         ? `${player.name} (X)`
                         : player.name === players.player2
                         ? `${player.name} (O)`
                         : player.name}
                     </td>
-                    <td className="px-4 py-3 text-center text-primary">
+                    <td className="px-6 py-4 text-center text-[var(--primary)] font-semibold">
                       {player.wins}
                     </td>
-                    <td className="px-4 py-3 text-center text-destructive">
+                    <td className="px-6 py-4 text-center text-[var(--destructive)] font-semibold">
                       {player.losses}
                     </td>
-                    <td className="px-4 py-3 text-center">{player.draws}</td>
-                    <td className="px-4 py-3 text-center text-primary">
+                    <td className="px-6 py-4 text-center">{player.draws}</td>
+                    <td className="px-6 py-4 text-center text-[var(--primary)] font-semibold">
                       {player.wins * 2 + player.draws}
                     </td>
-                    <td className="px-4 py-3 text-center">{player.winRate}%</td>
-                    <td className="px-4 py-3 text-right text-sm text-muted-foreground">
+                    <td className="px-6 py-4 text-center">{player.winRate}%</td>
+                    <td className="px-6 py-4 text-right text-sm text-[var(--muted-foreground)]">
                       {new Date(player.lastPlayed).toLocaleDateString()}
                     </td>
                   </tr>

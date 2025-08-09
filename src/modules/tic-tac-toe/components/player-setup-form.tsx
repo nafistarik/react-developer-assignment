@@ -19,43 +19,49 @@ export default function PlayerSetupForm() {
   };
 
   return (
-    <div className="flex items-center justify-center p-4  min-h-[calc(100vh-140px)]">
-      <div className="bg-card p-8 rounded-xl shadow-lg max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-6 text-center">Player Setup</h1>
-        
-        <div className="space-y-4">
+<div className="flex items-center justify-center px-4 py-8 min-h-[calc(100vh-140px)] bg-[var(--background)]">
+      <div className="bg-[var(--card)] p-8 rounded-2xl shadow-xl max-w-md w-full border border-[var(--border)]">
+        <h1 className="text-3xl font-bold mb-6 text-center tracking-tight">
+          🎯 Player Setup
+        </h1>
+
+        <div className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-1">Player 1 (X)</label>
+            <label className="block text-sm font-semibold mb-2 text-[var(--foreground)]">
+              Player 1 <span className="text-[var(--primary)]">(X)</span>
+            </label>
             <input
               type="text"
               value={player1}
               onChange={(e) => setPlayer1(e.target.value)}
-              className="w-full px-4 py-2 border border-border rounded-lg"
+              className="w-full px-4 py-2.5 bg-[var(--background)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all"
               placeholder="Enter name"
             />
           </div>
-          
+
           <div>
-            <label className="block text-sm font-medium mb-1">Player 2 (O)</label>
+            <label className="block text-sm font-semibold mb-2 text-[var(--foreground)]">
+              Player 2 <span className="text-[var(--destructive)]">(O)</span>
+            </label>
             <input
               type="text"
               value={player2}
               onChange={(e) => setPlayer2(e.target.value)}
-              className="w-full px-4 py-2 border border-border rounded-lg"
+              className="w-full px-4 py-2.5 bg-[var(--background)] border border-[var(--border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--destructive)] transition-all"
               placeholder="Enter name"
             />
           </div>
-          
+
           <button
             onClick={handleSubmit}
             disabled={!player1.trim() || !player2.trim()}
-            className={`w-full py-2 rounded-lg font-bold ${
+            className={`w-full py-3 rounded-lg font-bold tracking-wide transition-all ${
               player1.trim() && player2.trim()
-                ? "bg-primary text-white hover:bg-primary/90"
-                : "bg-muted text-muted-foreground cursor-not-allowed"
+                ? "bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)]"
+                : "bg-[var(--muted)] text-[var(--muted-foreground)] cursor-not-allowed"
             }`}
           >
-            Start Game
+            🚀 Start Game
           </button>
         </div>
       </div>

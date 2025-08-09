@@ -61,28 +61,28 @@ export default function Board() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 p-6 border border-border rounded-xl bg-card shadow-lg min-h-[calc(100vh-140px)]">
-      <h1 className="text-2xl font-bold">Tic Tac Toe</h1>
+ <div className="flex flex-col items-center gap-8 p-8 border border-[var(--border)] rounded-3xl bg-[var(--card)] shadow-xl min-h-[calc(100vh-140px)] max-w-md mx-auto">
+      <h1 className="text-4xl font-extrabold tracking-tight text-[var(--foreground)] select-none">Tic Tac Toe</h1>
       
       <div className="text-center">
-        <p className="text-muted-foreground">
-          {players.player1} (X) vs {players.player2} (O)
+        <p className="text-[var(--muted-foreground)] font-semibold">
+          {players.player1} <span className="text-[var(--primary)]">(X)</span> vs {players.player2} <span className="text-[var(--destructive)]">(O)</span>
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-[var(--muted-foreground)] mt-1">
           Round: {match.round} | Score: {match.player1Wins}-{match.player2Wins}-{match.draws}
         </p>
       </div>
 
-      <div className={`text-xl font-semibold ${
-        match.matchOver ? "text-green-600" :
-        winner ? "text-primary" :
-        isBoardFull ? "text-muted-foreground" :
-        isFirstPlayerTurn ? "text-primary" : "text-destructive"
+      <div className={`text-xl font-semibold select-none ${
+        match.matchOver ? "text-[var(--primary)]" :
+        winner ? "text-[var(--primary)]" :
+        isBoardFull ? "text-[var(--muted-foreground)]" :
+        isFirstPlayerTurn ? "text-[var(--primary)]" : "text-[var(--destructive)]"
       }`}>
         {getStatusMessage()}
       </div>
 
-      <div className="grid grid-cols-3 gap-3 w-64 h-64">
+      <div className="grid grid-cols-3 gap-4 w-72 h-72">
         {squares.map((value, index) => (
           <Square
             key={index}
@@ -94,7 +94,7 @@ export default function Board() {
 
       {(winner || isBoardFull) && !match.matchOver && (
         <button
-          className="px-6 py-2 bg-primary text-white rounded-lg"
+          className="px-8 py-3 bg-[var(--primary)] text-white rounded-xl font-semibold tracking-wide hover:bg-[var(--primary-hover)] transition-colors select-none"
           onClick={() => dispatch(resetBoard())}
         >
           Next Round
